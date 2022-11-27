@@ -62,9 +62,9 @@ function templateCardStatDiv(i) {
                         </div>
                     </div>
                 <div class="stats__buttons">
-                    <button class= "" id= "" onclick= "goPrevious(${i})"><img src="../img/arrow-left-2-32.ico"></button>
+                    <button class= "" id= "" onclick= "goPrevious(${i})"><img src="./img/arrow-left-2-32.ico"></button>
                     <button class= "" id= "" onclick= "closeStats()">(close)</button>
-                    <button class= "" id= "" onclick= "goNext(${i})"><img src="../img/arrow-right-2-32.ico"></button>
+                    <button class= "" id= "" onclick= "goNext(${i})"><img src="./img/arrow-right-2-32.ico"></button>
                 </div>
             </div>`;
 }
