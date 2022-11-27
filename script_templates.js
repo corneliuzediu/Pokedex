@@ -96,12 +96,12 @@ function templateBaseStats(baseStats){
                 <div class="progress">
                     <div class="progress-bar bg-info" role="progressbar" aria-label="Info example" style="width: ${baseStats['Speed'] * 0.75}%" aria-valuemin="0" aria-valuemax="100">${baseStats['Speed']}</div>
                 </div>
-            </div>`
+            </div>`;
 }
+
+
 function templateTypeElementStats(typeElement, i, j) {
-    return `
-    <div id="stats__type__element--id-${i}-${j}"class="type__element">
-        <p>${typeElement}</p>
-    </div>
-    `
+    return `<div id="stats__type__element--id-${i}-${j}"class="type__element">
+                <p>${typeElement}</p>
+            </div>`;
 }

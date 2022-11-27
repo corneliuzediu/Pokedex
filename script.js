@@ -46,7 +46,7 @@ let baseStats = [{
 /***    Functions   ***/
 
 //Card Deck - Function
-function init() {
+function init() { // If the screen is "big", then initial load provide 40 Pokemons
     if (screen.width < 1060) {
         loadPokemonList();
         createBackpup();
@@ -56,6 +56,8 @@ function init() {
         createBackpup();
     }
 }
+
+
 async function loadPokemonList() {
     for (let i = 1; i <= loadNrPokemon; i++) {
         if (loadMorePokemon < loadNrPokemon) {
@@ -72,7 +74,8 @@ async function loadPokemonList() {
     }
 }
 
-async function loadPokemon(i) {
+
+async function loadPokemon(i) { //  Initial download the infos from API
     let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     let response = await fetch(url);
     currentPokemon = await response.json();
@@ -80,7 +83,7 @@ async function loadPokemon(i) {
 }
 
 
-async function loadMorePokemonList() {
+async function loadMorePokemonList() { //   Follow up download
     for (let i = loadNrPokemon + 1; i <= loadMorePokemon; i++) {
         await loadPokemon(i);
     }
@@ -93,75 +96,11 @@ async function moveToArray() {
     await currentPokemonArray.push(currentPokemon);
 }
 
-// Generate Pokemon Card DIV
-function generateCardDiv() {
-    let card_container = document.getElementById('cards__wrapper');
-    for (let i = 0; i < loadNrPokemon; i++) {
-        card_container.innerHTML += templateCardDiv(i);
-    }
-}
 
-function generateMoreCardDiv() {
-    let card_container = document.getElementById('cards__wrapper');
-    for (let i = loadNrPokemon; i < loadMorePokemon; i++) {
-        card_container.innerHTML += templateCardDiv(i);
-    }
-}
-
-
-
-function renderPokemonInfo() {
-    for (let i = 0; i < currentPokemonArray.length; i++) {
-        baseInfo(i);
-        showElement(i);
-        showPhoto(i);
-    }
-}
-
-function renderMorePokemonInfo() {
-    for (let i = loadNrPokemon; i < currentPokemonArray.length; i++) {
-        baseInfo(i);
-        showElement(i);
-        showPhoto(i);
-    }
-}
-
-
-function baseInfo(i) {
-    let name = currentPokemonArray[i]['name'];
-    let Name = capitalizeFirstLetter(name);
-    let ID = currentPokemonArray[i]['id'];
-    document.getElementById('info__id-' + i).innerHTML = ID + '#';
-    document.getElementById('info__name-' + i).innerHTML = Name;
-}
-
-
-function showElement(i) {
-    let elementsHTML = document.getElementById('card__container--elements-' + i);
-    elementsHTML.innerHTML = '';
-    let elementsJSON = currentPokemonArray[i]['types'];
-    for (let j = 0; j < elementsJSON.length; j++) {
-        let typeElement = elementsJSON[j]['type']['name'];
-        elementsHTML.innerHTML += templateTypeElement(typeElement, i, j);
-        chooseColorElement(typeElement, i, j);
-    }
-}
-
-
-function showPhoto(i) {
-    let pokemonImg = currentPokemonArray[i]['sprites']['other']['official-artwork']['front_default'];
-    document.getElementById('card__container--img-' + i).innerHTML += `<img src="${pokemonImg}">`;
-}
-
-
-//Capitalize First Letter
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
 //Search for pokemon
 function searchPokemon(event) {
-    noMoreLoading = true;
+    noMoreLoading = true; //Stops the loading of more Pokemons
     let searchInput = event.target.value.toLowerCase();
     let filterPokemon = backupArray.filter((pokemon) => {
         return (pokemon['name'].toLowerCase().includes(searchInput));
@@ -169,9 +108,10 @@ function searchPokemon(event) {
     displaySearchOnly(filterPokemon);
     searchIsActive();
     if (searchInput.length == 0) {
-        noMoreLoading = false;
+        noMoreLoading = false; //Allows to load more Pokemon if "Search" is empty
     }
 }
+
 
 function searchIsActive() {
     resetCurrentArray();
@@ -182,6 +122,7 @@ function searchIsActive() {
         currentPokemonArray = searchPokemonArray;
     }
 }
+
 
 function resetCurrentArray() {
     currentPokemonArray = backupArray;
@@ -194,11 +135,13 @@ function clearSearch(event) {
     searchPokemon(event)
 }
 
+
 function displaySearchOnly(filterPokemon) {
     searchPokemonArray = filterPokemon;
     clearCardDisplay();
     showSearchedPokemon()
 }
+
 
 function clearCardDisplay() {
     let card_container = document.getElementById('cards__wrapper');
@@ -211,6 +154,7 @@ function showSearchedPokemon() {
     generateSearchCardDiv();
     renderPokemonSearch();
 }
+
 
 function generateSearchCardDiv() {
     let card_container = document.getElementById('cards__wrapper');
@@ -228,6 +172,7 @@ function renderPokemonSearch() {
     }
 }
 
+
 function searchBaseInfo(i) {
     let name = searchPokemonArray[i]['name'];
     let Name = capitalizeFirstLetter(name);
@@ -235,6 +180,7 @@ function searchBaseInfo(i) {
     document.getElementById('info__id-' + i).innerHTML = ID + '#';
     document.getElementById('info__name-' + i).innerHTML = Name;
 }
+
 
 function searchShowElement(i) {
     let elementsHTML = document.getElementById('card__container--elements-' + i);
@@ -247,15 +193,10 @@ function searchShowElement(i) {
     }
 }
 
+
 function searchShowPhoto(i) {
     let pokemonImg = searchPokemonArray[i]['sprites']['other']['official-artwork']['front_default'];
     document.getElementById('card__container--img-' + i).innerHTML += `<img src="${pokemonImg}">`;
-}
-
-function handleClear(event) {
-    if (!event.target.value.length) {
-        console.log('clear');
-    }
 }
 
 
@@ -265,6 +206,13 @@ function addBlur() {
 }
 
 
+//The function creates a Backup Array
+function createBackpup() {
+    backupArray = currentPokemonArray;
+}
+
+
+/***    The functions are changing the Background Color of the HTML Elements    ***/
 function chooseColorElement(typeElement, i, j) {
     const colorArray = Object.entries(objColors);
     let type_name = '';
@@ -291,7 +239,6 @@ function chooseColorElementStats(typeElement, i, j) {
 }
 
 
-
 function chooseColorBackground(i) {
     let bgColor = document.getElementById('type__element--id-' + i + '-0').style.backgroundColor;
     var r = document.querySelector(':root');
@@ -299,14 +246,8 @@ function chooseColorBackground(i) {
 }
 
 
-
 function chooseColorBackgroundStats(i) {
     let bgColor = document.getElementById('stats__type__element--id-' + i + '-0').style.backgroundColor;
     var r = document.querySelector(':root');
     document.getElementById('stats__show--id-' + i).style.setProperty('--base-color', bgColor);
-}
-
-
-function createBackpup() {
-    backupArray = currentPokemonArray;
 }
