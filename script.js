@@ -34,12 +34,20 @@ let objColors = {
 let currentPokemonArray = [];
 let searchPokemonArray = [];
 let backupArray = [];
+let baseStats = [{
+    'HP': '',
+    'Attack': '',
+    'Defense': '',
+    'Special-Attack': '',
+    'Special-Defense': '',
+    'Speed': '',
+}];
 
 /***    Functions   ***/
 
 //Card Deck - Function
-function init(){
-    if(screen.width < 1060){
+function init() {
+    if (screen.width < 1060) {
         loadPokemonList();
         createBackpup();
     } else {
@@ -165,17 +173,17 @@ function searchPokemon(event) {
     }
 }
 
-function searchIsActive(){
+function searchIsActive() {
     resetCurrentArray();
     let a = searchPokemonArray.length;
     let b = currentPokemonArray.length;
     let c = backupArray.length;
-    if( a < b && a > 0){
+    if (a < b && a > 0) {
         currentPokemonArray = searchPokemonArray;
     }
 }
 
-function resetCurrentArray(){
+function resetCurrentArray() {
     currentPokemonArray = backupArray;
 }
 
@@ -299,6 +307,6 @@ function chooseColorBackgroundStats(i) {
 }
 
 
-function createBackpup(){
+function createBackpup() {
     backupArray = currentPokemonArray;
 }
