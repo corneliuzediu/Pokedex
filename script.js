@@ -33,10 +33,21 @@ let objColors = {
 /***    Array       ***/
 let currentPokemonArray = [];
 let searchPokemonArray = [];
+let backupArray = [];
 
 /***    Functions   ***/
 
 //Card Deck - Function
+function init(){
+    if(screen.width < 1060){
+        loadPokemonList();
+        createBackpup();
+    } else {
+        loadNrPokemon = 40;
+        loadPokemonList();
+        createBackpup();
+    }
+}
 async function loadPokemonList() {
     for (let i = 1; i <= loadNrPokemon; i++) {
         if (loadMorePokemon < loadNrPokemon) {
@@ -144,19 +155,34 @@ function capitalizeFirstLetter(string) {
 function searchPokemon(event) {
     noMoreLoading = true;
     let searchInput = event.target.value.toLowerCase();
-    let filterPokemon = currentPokemonArray.filter((pokemon) => {
+    let filterPokemon = backupArray.filter((pokemon) => {
         return (pokemon['name'].toLowerCase().includes(searchInput));
     })
     displaySearchOnly(filterPokemon);
-    console.log(searchInput.length)
+    searchIsActive();
     if (searchInput.length == 0) {
         noMoreLoading = false;
     }
 }
 
+function searchIsActive(){
+    resetCurrentArray();
+    let a = searchPokemonArray.length;
+    let b = currentPokemonArray.length;
+    let c = backupArray.length;
+    if( a < b && a > 0){
+        currentPokemonArray = searchPokemonArray;
+    }
+}
+
+function resetCurrentArray(){
+    currentPokemonArray = backupArray;
+}
+
 
 function clearSearch(event) {
     searchInput = 0;
+    searchIsActive();
     searchPokemon(event)
 }
 
@@ -209,6 +235,7 @@ function searchShowElement(i) {
     for (let j = 0; j < elementsJSON.length; j++) {
         let typeElement = elementsJSON[j]['type']['name'];
         elementsHTML.innerHTML += templateTypeElement(typeElement, i, j);
+        chooseColorElement(typeElement, i, j);
     }
 }
 
@@ -269,4 +296,9 @@ function chooseColorBackgroundStats(i) {
     let bgColor = document.getElementById('stats__type__element--id-' + i + '-0').style.backgroundColor;
     var r = document.querySelector(':root');
     document.getElementById('stats__show--id-' + i).style.setProperty('--base-color', bgColor);
+}
+
+
+function createBackpup(){
+    backupArray = currentPokemonArray;
 }

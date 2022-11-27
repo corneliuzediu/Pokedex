@@ -34,16 +34,17 @@ function generateStatsDiv(i) {
                 </div>
             </div>
         <div class="stats__buttons">
-            <button class= "" id= "" onclick= "goPrevious(${i})">Left</button>
-            <button class= "" id= "" onclick= "closeStats()">Close</button>
-            <button class= "" id= "" onclick= "goNext(${i})">Right</button>
+            <button class= "" id= "" onclick= "goPrevious(${i})"><img src="../img/arrow-left-2-32.ico"></button>
+            <button class= "" id= "" onclick= "closeStats()">(close)</button>
+            <button class= "" id= "" onclick= "goNext(${i})"><img src="../img/arrow-right-2-32.ico"></button>
         </div>
     </div>
     `;
 }
 
-function pokemonStats(i) {
+async function pokemonStats(i) {
     if (trigger == false) {
+        await searchIsActive();
         document.getElementById('stats__wrapper').classList.remove('d-none');
         generateStatsDiv(i);
         generateBaseStats();
@@ -56,6 +57,7 @@ function pokemonStats(i) {
         stopScroll();
         addBlur();
     } else {
+        await searchIsActive();
         document.getElementById('stats__wrapper').classList.remove('d-none');
         generateStatsDiv(i);
         generateBaseStats();
