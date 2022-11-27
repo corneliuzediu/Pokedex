@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_media.css">
+    <script src="script.js"></script>
+    <script src="script_templates.js"></script>
+    <script src="script_card_and_stats.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="icon" href="./img/icon_pokemon.png">
+    <title>Pokedex</title>
+
+
+</head>
+
+<body onload="loadPokemonList()">
+    <nav class="header__container">
+        <!-- Logo & Name-->
+        <div class="logo__wrapper" onclick="window.location.reload()">
+            <img src="./img/icon_pokemon.png">
+            <img src ="./img/logo.png">
+        </div>
+        <!-- Search area -->
+        <div class="search__wrapper">
+            <input id="search__input--id" type="search" placeholder="Search pokemon ..." onkeyup="searchPokemon(event)" onclick="clearSearch(event)">
+        </div>
+    </nav>
+    <!-- Pokemon Cards Area -->
+    <main id="cards__wrapper" class="cards__wrapper">
+
+    </main>
+    <!-- Base stats Area -->
+    <div id="stats__wrapper" class="stats__wrapper d-none">
+        <div id="stats__container" class="stats__container"></div>
+    </div>
+
+    <footer>
+
+    </footer>
+
+</body>
+
+</html>

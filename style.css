@@ -1,0 +1,394 @@
+/* General Classes */
+:root {
+    --base-color: red;
+}
+
+body {
+    margin: 0;
+    height: 101%;
+    width: 100%;
+    background-color: rgb(249, 243, 162);
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+* {
+    font-family: cursive !important;
+    box-sizing: border-box;
+}
+
+
+.d-none {
+    display: none !important;
+}
+
+
+/* Classes for the Header */
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-inline: 50px;
+    background-color: rgb(56, 110, 156);
+    border-bottom: 2px solid black;
+    box-shadow: 2px 2px 5px 5px rgb(0 0 0 / 40%)
+}
+
+
+.logo__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+
+.logo__wrapper img:last-child {
+    height: 6rem;
+    width: 6rem;
+}
+
+.logo__wrapper img:first-child {
+    width: 4rem;
+    height: 4rem;
+    transition: transform 600ms ease-in-out;
+}
+
+
+.logo__wrapper img:first-child:hover {
+    transform: rotate(720deg);
+}
+
+
+.search__wrapper input {
+    padding-inline: 20px;
+    padding-block: 10px;
+    border: unset;
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
+}
+
+/*Classes for the Cards Wrapper */
+.cards__wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 120px;
+    gap: 10px;
+    width: 100%;
+    padding: 30px;
+}
+
+/* Classes for the card */
+.card__container {
+    border-radius: 20px;
+    height: 200px;
+    width: 250px;
+    min-height: 200px;
+    min-width: 250px;
+    background-image: linear-gradient(45deg, white, var(--base-color));
+}
+
+
+.card__container--info {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 10px;
+}
+
+
+.card__container--info h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    padding-block: 10px;
+}
+
+.card__container--elements {
+    display: flex;
+    gap: 10px;
+    padding-inline: 10px;
+}
+
+.type__element{
+    padding: 2px 8px;
+    border-radius: 20px;
+    background-color: rgb(24, 120, 205);
+}
+
+.type__element p {
+    margin: 0;
+    padding-inline: 2px;
+}
+
+
+.card__container--stats_img {
+    display: flex;
+    justify-content: space-between;
+    height: 50%;
+}
+
+
+.card__container--show_stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15px;
+    transition: all 600ms ease-in-out;
+}
+
+.card__container--show_stats:hover {
+    transform: scale(1.2)
+}
+
+
+.card__container--show_stats button {
+    margin: 0;
+    padding: 2px 8px;
+    border: none;
+    border-radius: 15px;
+    background-color: unset;
+}
+
+
+.card__container--abilities p {
+    margin: 0;
+    padding: 5px 15px;
+}
+
+
+.card__container--img {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+    height: 100%;
+}
+
+
+.card__container--img img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+
+/* Classes for the Stats Area */
+.stats__wrapper {
+    display: flex;
+    position: fixed;
+    z-index: 10;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.stats__container {
+    display: flex;
+    width: 400px;
+    height: 500px;
+    background-color: aliceblue;
+    border-radius: 20px;
+}
+
+
+.stats__wrapper {
+    display: flex;
+}
+
+
+.stats__show {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    height: inherit;
+    border-radius: 20px;
+    background-image: linear-gradient(45deg, white,white,  var(--base-color));
+}
+
+
+.stats__info {
+    min-width: 100%;
+}
+
+
+.stats__img__type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stats__img__type img {
+    width: 100px;
+    height: 100px;
+}
+
+
+.stats__img-container {
+    height: 70%;
+}
+
+
+.stats__img__logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+
+.stats__img__logo img:nth-child(1) {
+    height: 70px;
+    width: 70px;
+}
+
+
+.stats__img__logo img:nth-child(2) {
+    height: 30px;
+    width: 30px;
+    transition: transform 600ms ease-in-out;
+}
+
+
+.stats__img__logo img:nth-child(2):hover {
+    transform: rotate(720deg);
+}
+
+
+.stats__buttons {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    padding-inline: 20px;
+    background-color: white;
+    padding-block: 5px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    justify-content: space-between;
+}
+
+
+.flip_img {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+
+.blur {
+    filter: blur(3px) !important;
+    -webkit-filter: blur(3px);
+}
+
+
+.about__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.info__and__stats {
+    display: flex;
+    width: 100%;
+}
+
+
+.base__stats--container {
+    padding-top: 20px;
+}
+
+.more__info--button,
+.base__stats--button {
+    flex: 1;
+    border: none;
+    border-block: 2px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+
+.more__info--button:hover,
+.base__stats--button:hover {
+    background-color: unset !important;
+}
+
+
+.more__info--container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.abilities--class {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 80%;
+    height: auto;
+}
+
+
+.abilities--class p {
+    white-space: pre;
+    text-align: justify;
+}
+
+.species--class,
+.height--class,
+.weight--class,
+.abilities--class {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.species--class h3,
+.species--class p,
+.height--class h3,
+.height--class p,
+.weight--class h3,
+.weight--class p,
+.abilities--class h3,
+.abilities--class p {
+    margin: 0;
+    padding-block: 5px;
+    font-size: 1.2rem;
+}
+
+
+.stats_bars {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-left: 13px;
+}
+
+
+.stats_bars h3 {
+    margin: 0;
+    width: 35%;
+    font-size: 1rem;
+}
+
+.progress {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.progress-bar {
+    color: black !important;
+}
