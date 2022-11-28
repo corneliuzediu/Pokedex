@@ -249,3 +249,8 @@ async function waitForMore() {
     await loadPokemonList();
 }
 
+
+//Stop Propagation
+function stopPropagation(event) {
+    event.stopPropagation();
+}

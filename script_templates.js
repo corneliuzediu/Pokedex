@@ -30,7 +30,7 @@ function templateTypeElement(typeElement, i, j) {
 
 //Template for Card Stats 
 function templateCardStatDiv(i) {
-    return `<div id="stats__show--id-${i}" class ="stats__show">
+    return `<div id="stats__show--id-${i}" class ="stats__show" onclick="stopPropagation(event)">
                 <div class="stats__info card__container--info">
                     <h2 id="stats__info__name-${i}">Name</h2>
                     <h2 id="stats__info__id-${i}"></h2>
