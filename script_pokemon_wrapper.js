@@ -16,6 +16,7 @@ function generateMoreCardDiv() {
 
 
 function renderPokemonInfo() {
+    document.getElementById('cards_loading-animation').classList.add('d-none')
     for (let i = 0; i < currentPokemonArray.length; i++) {
         baseInfo(i);
         showElement(i);
@@ -24,6 +25,7 @@ function renderPokemonInfo() {
 }
 
 function renderMorePokemonInfo() {
+    document.getElementById('cards_loading-animation').classList.add('d-none')
     for (let i = loadNrPokemon; i < currentPokemonArray.length; i++) {
         baseInfo(i);
         showElement(i);

@@ -63,6 +63,7 @@ async function loadPokemonList() {
         if (loadMorePokemon < loadNrPokemon) {
             await loadPokemon(i);
         } else {
+            document.getElementById('cards_loading-animation').classList.remove('d-none')
             await loadMorePokemonList(i);
             loadNrPokemon += 20;
             break
