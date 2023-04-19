@@ -1,3 +1,6 @@
+//Variables
+let selectedPokemon;
+
 //Generate de HTML Element
 function generateStatsDiv(i) {
     let stats_container = document.getElementById('stats__container');
@@ -7,6 +10,7 @@ function generateStatsDiv(i) {
 
 //Fill the HTML Elements
 function pokemonStats(i) {
+    selectedPokemon = i;
     if (trigger == false) {
         showMoreInfoOnClick(i);
     } else {
@@ -217,7 +221,6 @@ function goPrevious(i) {
 
 function goNext(i) {
     if (i < currentPokemonArray.length - 1) {
-
         i++;
         pokemonStats(i)
     } else {
@@ -253,4 +256,14 @@ async function waitForMore() {
 //Stop Propagation
 function stopPropagation(event) {
     event.stopPropagation();
+}
+
+
+//Manipulate Cards
+function getControllers() {
+    document.addEventListener('keyup', (e) => {
+        if (e.keyCode == 39) goNext(selectedPokemon);
+        if (e.keyCode == 37) goPrevious(selectedPokemon);
+        if (e.keyCode == 27) closeStats();
+    })
 }

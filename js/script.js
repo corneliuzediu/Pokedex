@@ -30,6 +30,7 @@ let objColors = {
     fairy: "#FBACFF",
 };
 
+
 /***    Array       ***/
 let currentPokemonArray = [];
 let searchPokemonArray = [];
@@ -43,10 +44,11 @@ let baseStats = [{
     'Speed': '',
 }];
 
-/***    Functions   ***/
 
+/***    Functions   ***/
 //Card Deck - Function
 function init() { // If the screen is "big", then initial load provide 40 Pokemons
+    getControllers();
     if (screen.width < 1060) {
         loadPokemonList();
         createBackpup();
@@ -252,3 +254,4 @@ function chooseColorBackgroundStats(i) {
     var r = document.querySelector(':root');
     document.getElementById('stats__show--id-' + i).style.setProperty('--base-color', bgColor);
 }
+
